@@ -1,63 +1,19 @@
-buildscript {
-    repositories {
-        mavenLocal()
-        mavenCentral()
-        jcenter()
-        maven { url "https://plugins.gradle.org/m2/" }
-    }
+group 'com.sda.gradle'
+version '1.0.0'
 
-    dependencies {
-        classpath group: "me.seeber.gradle", name: "gradle-project-plugin", version: "0.1.0"
-    }
+apply plugin: 'groovy'
+apply plugin: 'maven'
+apply plugin: "idea"
+apply plugin: 'java-gradle-plugin'
+
+
+repositories {
+    mavenCentral()
 }
 
-version = "0.2.2"
-group = "me.seeber.gradle"
-description = "Run wsimport on WSDL files to generate Java code required to access web services"
-
-apply plugin: "me.seeber.project.gradle-plugin"
-apply plugin: "me.seeber.repository.github"
-apply plugin: "me.seeber.distribution.maven"
-apply plugin: "me.seeber.ide.eclipse"
-
-apply plugin: "com.jfrog.bintray"
-
-projectConfig {
-    organization.name = "Jochen Seeber"
-    inceptionYear = 2015
-    license.name = "BSD 2-Clause"
-}
-
-githubConfig { user = "jochenseeber" }
-
-pluginBundle {
-    description = "Run wsimport on WSDL files to generate Java code required to access web services"
-    tags = ["soap", "wsdl", "wsimport"]
-
-    plugins {
-        // Here to keep the darn formatter happy
-        wsimportPlugin { id = "me.seeber.wsimport" }
-    }
-}
-
-tasks.bintrayUpload.doFirst {
-    publications = project.publishing.publications.withType(MavenPublication)*.name
-}
-
-bintray {
-    user = System.getenv("BINTRAY_USER") ?: project.findProperty("bintray.user")
-    key = System.getenv("BINTRAY_KEY") ?: project.findProperty("bintray.key")
-
-    pkg {
-        repo = "maven"
-        name = project.name
-        userOrg = "jochen"
-        licenses = ["BSD 2-Clause"]
-        vcsUrl = pluginBundle.vcsUrl
-
-        version {
-            name = project.version
-            vcsTag = "${project.name}-${project.version}"
-        }
+dependencies {
+    testCompile gradleTestKit()
+    testCompile('org.spockframework:spock-core:1.0-groovy-2.4') {
+        exclude module: 'groovy-all'
     }
 }

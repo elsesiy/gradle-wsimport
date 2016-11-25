@@ -1,9 +1,5 @@
-*~
-/.classpath
-/.gradle
-/.project
-/.settings
-/bin
-/build
-/target
-\#*\#
+build
+.gradle
+.idea
+*.iml
+.DS_Store

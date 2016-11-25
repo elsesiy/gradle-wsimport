@@ -25,7 +25,7 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package me.seeber.gradle.wsimport
+package com.sda.gradle
 
 import groovy.transform.TypeChecked
 
@@ -72,7 +72,8 @@ public class WsimportTask extends DefaultTask {
                     "wsdllocation": change.file.name,
                     "s": outputDir,
                     "extension": true,
-                    "Xnocompile": true
+                    "Xnocompile": true,
+                    "XautoNameResolution": true
                 ]
 
                 List<String> arguments = createArguments(options)
