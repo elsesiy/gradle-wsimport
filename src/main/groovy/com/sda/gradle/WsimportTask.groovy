@@ -70,8 +70,7 @@ public class WsimportTask extends DefaultTask {
                     "quiet": true,
                     "p": packageName,
                     "wsdllocation": change.file.name,
-                    "s": outputDir,
-                    "extension": true,
+                    "d": outputDir,
                     "Xnocompile": true,
                     "B-XautoNameResolution": true
                 ]
