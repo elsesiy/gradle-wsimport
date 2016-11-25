@@ -73,7 +73,7 @@ public class WsimportTask extends DefaultTask {
                     "s": outputDir,
                     "extension": true,
                     "Xnocompile": true,
-                    "XautoNameResolution": true
+                    "B-XautoNameResolution": true
                 ]
 
                 List<String> arguments = createArguments(options)
