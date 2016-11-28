@@ -61,7 +61,7 @@ public class WsimportPlugin implements Plugin<Project> {
 
                 if(wsdlDir.directory) {
                     String infix = sourceSet.name == "main" ? "" : "-${sourceSet.name}"
-                    File generatedSourcesDir = new File(project.buildDir, "generated${infix}-src/wsimport")
+                    File generatedSourcesDir = new File(project.buildDir, "{infix}/java")
 
                     WsimportTask wsimportTask = tasks.create(taskName, WsimportTask)
                     wsimportTask.with {

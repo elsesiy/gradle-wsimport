@@ -64,15 +64,12 @@ public class WsimportTask extends DefaultTask {
                 JavaExecAction action = getActionFactory().newJavaExecAction()
 
                 File relativeSourceFile = new File(inputDir.toURI().relativize(change.file.toURI()).toString())
-                String packageName = relativeSourceFile.parent.replace(File.separator, ".")
 
                 Map<String, Object> options = (Map<String, Object>)[
                     "quiet": true,
-                    "p": packageName,
                     "wsdllocation": change.file.name,
                     "d": outputDir,
-                    "Xnocompile": true,
-                    "B-XautoNameResolution": true
+                    "Xnocompile": true
                 ]
 
                 List<String> arguments = createArguments(options)
