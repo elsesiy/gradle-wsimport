@@ -61,17 +61,17 @@ public class WsimportPlugin implements Plugin<Project> {
 
                 if(wsdlDir.directory) {
                     String infix = sourceSet.name == "main" ? "" : "-${sourceSet.name}"
-                    File generatedSourcesDir = new File(project.buildDir, "{infix}/java")
+                    File javaDir = file("src/${infix}/java")
 
                     WsimportTask wsimportTask = tasks.create(taskName, WsimportTask)
                     wsimportTask.with {
                         description = "Generate JAX-WS code from WSDL for source set ${sourceSet.name}."
                         inputDir = wsdlDir
-                        outputDir = generatedSourcesDir
+                        outputDir = javaDir
                         group = "generated"
                     }
 
-                    sourceSet.java.srcDir(generatedSourcesDir)
+                    sourceSet.java.srcDir(javaDir)
                     sourceSet.resources.srcDir(wsdlDir)
 
                     tasks[sourceSet.compileJavaTaskName].dependsOn(wsimportTask)
